@@ -1,19 +1,32 @@
+require "pry"
+
 def get_first_name_of_season_winner(data, season)
-  # code here
+  data.fetch(season).find {|i| i["status"] == "Winner"}["name"].split.first
 end
 
+def all_contestants(data)
+  all_contestants = []
+  data.each do |season, contestant|
+    all_contestants.concat(contestant)
+  end 
+  all_contestants
+end 
+
 def get_contestant_name(data, occupation)
-  # code here
+  all_contestants(data).find {|contestant| contestant["occupation"] == occupation}["name"]
 end
 
 def count_contestants_by_hometown(data, hometown)
-  # code here
+  all_contestants(data).count do |contestant|
+    contestant["hometown"] == hometown
+  end 
 end
 
 def get_occupation(data, hometown)
-  # code here
+  all_contestants(data).find {|contestant| contestant["hometown"] == hometown}["occupation"]
 end
 
 def get_average_age_for_season(data, season)
-  # code here
+  season_data = data.fetch(season)
+  binding.pry
 end

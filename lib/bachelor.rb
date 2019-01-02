@@ -28,5 +28,5 @@ end
 
 def get_average_age_for_season(data, season)
   season_data = data.fetch(season)
-  binding.pry
+  season_data.collect
 end
